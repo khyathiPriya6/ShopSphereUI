@@ -1,0 +1,38 @@
+.navbar {
+    height: 64px;
+    padding: 0 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: white;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.navbar-logo {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2e3832;
+}
+
+.navbar-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.cart-button,
+.logout-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cart-button {
+    color: #3f4a3c;
+}
+
+.logout-button {
+    color: #777;
+}
