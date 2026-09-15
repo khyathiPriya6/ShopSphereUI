@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import SearchBar from "../../components/SearchBar";
 import Filters from "../../components/Filters";
@@ -10,84 +10,85 @@ import products from "../../data/products";
 import "./styles.css";
 
 const Products = () => {
+  const navigate = useNavigate();
 
-    const [search, setSearch] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState("");
-    const [minPrice, setMinPrice] = useState("");
-    const [maxPrice, setMaxPrice] = useState("");
+  const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
 
-    const filteredProducts = products.filter((product) => {
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
 
-        const matchesSearch =
-            product.name
-                .toLowerCase()
-                .includes(search.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "" ||
+      product.categoryId === Number(selectedCategory);
 
-        const matchesCategory =
-            selectedCategory === "" ||
-            product.category === selectedCategory;
+    const matchesMinPrice =
+      minPrice === "" ||
+      product.price >= Number(minPrice);
 
-        const matchesMinPrice =
-            minPrice === "" ||
-            product.price >= Number(minPrice);
-
-        const matchesMaxPrice =
-            maxPrice === "" ||
-            product.price <= Number(maxPrice);
-
-        return (
-            matchesSearch &&
-            matchesCategory &&
-            matchesMinPrice &&
-            matchesMaxPrice
-        );
-    });
+    const matchesMaxPrice =
+      maxPrice === "" ||
+      product.price <= Number(maxPrice);
 
     return (
-        <div className="products-page">
+      matchesSearch &&
+      matchesCategory &&
+      matchesMinPrice &&
+      matchesMaxPrice
+    );
+  });
 
-            <Navbar />
+  return (
+    <div className="products-page">
 
-            <main className="products-container">
+      <Navbar />
 
-                <SearchBar
-                    search={search}
-                    setSearch={setSearch}
-                />
+      <main className="products-container">
 
-                <div className="products-content">
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+        />
 
-                    <Filters
-                        selectedCategory={selectedCategory}
-                        setSelectedCategory={setSelectedCategory}
-                        minPrice={minPrice}
-                        setMinPrice={setMinPrice}
-                        maxPrice={maxPrice}
-                        setMaxPrice={setMaxPrice}
-                    />
+        <div className="products-content">
 
-                    <section className="products-section">
+          <Filters
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            minPrice={minPrice}
+            setMinPrice={setMinPrice}
+            maxPrice={maxPrice}
+            setMaxPrice={setMaxPrice}
+          />
 
-                        <div className="products-heading">
-                            <h2>Products</h2>
+          <section className="products-section">
 
-                            <span>
-                                {filteredProducts.length} products
-                            </span>
-                        </div>
+            <div className="products-heading">
+              <h2>Products</h2>
+              <span>
+                {filteredProducts.length} products
+              </span>
+            </div>
 
-                        <ProductList
-                            products={filteredProducts}
-                        />
+            <ProductList
+              products={filteredProducts}
+              onProductClick={(productId) => {
+                navigate(`/products/${productId}`);
+              }}
+            />
 
-                    </section>
-
-                </div>
-
-            </main>
+          </section>
 
         </div>
-    );
+
+      </main>
+
+    </div>
+  );
 };
 
 export default Products;

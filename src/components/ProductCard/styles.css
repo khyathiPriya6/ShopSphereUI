@@ -72,3 +72,11 @@
 .add-cart-button:hover {
     background-color: #2e3832;
 }
+.product-clickable,
+.product-name-clickable {
+  cursor: pointer;
+}
+
+.product-name-clickable:hover {
+  text-decoration: underline;
+}

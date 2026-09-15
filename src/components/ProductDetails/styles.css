@@ -1,0 +1,152 @@
+.product-details-page {
+  min-height: 100vh;
+  background: #f5f5f2;
+}
+
+.product-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 24px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 24px;
+  font-size: 15px;
+  color: #3f4a3c;
+  cursor: pointer;
+  display: block;
+  text-align: left;
+}
+
+.product-details-card {
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  padding: 40px;
+}
+
+.product-details-image {
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.product-details-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.product-details-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.product-details-category {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.product-details-info h1 {
+  font-size: 32px;
+  color: #2e3832;
+  margin: 0 0 18px;
+}
+
+.product-details-description {
+  color: #666;
+  line-height: 1.6;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.product-details-price {
+  font-size: 28px;
+  font-weight: 600;
+  color: #3f4a3c;
+  margin-bottom: 10px;
+}
+
+.product-details-stock {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.product-details-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.details-add-cart-button,
+.details-cart-button {
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.details-add-cart-button {
+  background: #3f4a3c;
+  color: white;
+  border: 1px solid #3f4a3c;
+}
+
+.details-cart-button {
+  background: white;
+  color: #3f4a3c;
+  border: 1px solid #3f4a3c;
+}
+
+.details-add-cart-button:hover {
+  background: #2e3832;
+}
+
+.details-cart-button:hover {
+  background: #f5f5f2;
+}
+
+.details-add-cart-button:disabled,
+.details-cart-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 800px) {
+  .product-details-card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 30px;
+  }
+
+  .product-details-image {
+    height: 350px;
+  }
+
+  .product-details-info h1 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 500px) {
+  .product-details-container {
+    padding: 20px 16px;
+  }
+
+  .product-details-actions {
+    flex-direction: column;
+  }
+}

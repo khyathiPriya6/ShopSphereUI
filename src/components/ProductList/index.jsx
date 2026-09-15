@@ -1,26 +1,24 @@
 import ProductCard from "../ProductCard";
 import "./styles.css";
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, onProductClick }) => (
+  <div className="product-list">
 
-    return (
-        <div className="product-list">
+    {products.length === 0 ? (
+      <p className="no-products">
+        No products found.
+      </p>
+    ) : (
+      products.map((product) => (
+        <ProductCard
+          key={product.productId}
+          product={product}
+          onProductClick={onProductClick}
+        />
+      ))
+    )}
 
-            {products.length === 0 ? (
-                <p className="no-products">
-                    No products found.
-                </p>
-            ) : (
-                products.map((product) => (
-                    <ProductCard
-                        key={product.id}
-                        product={product}
-                    />
-                ))
-            )}
-
-        </div>
-    );
-};
+  </div>
+);
 
 export default ProductList;

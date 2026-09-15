@@ -1,42 +1,56 @@
 import "./styles.css";
+import { useCart } from "../../context/CardContext";
 
-const ProductCard = ({ product }) => {
 
-    return (
-        <div className="product-card">
+const ProductCard = ({ product, onProductClick }) => {
+  const { addToCart } = useCart();
 
-            <div className="product-image">
-                Product Image
-            </div>
+  return (
+    <div className="product-card">
+      <div
+            className="product-image product-clickable"
+            onClick={() => onProductClick(product.productId)}
+>
+        {product.imageUrl ? (
+          <img src={product.imageUrl} alt={product.name} />
+        ) : (
+          <span>No Image</span>
+        )}
+      </div>
 
-            <div className="product-details">
+      <div className="product-details">
+        <p className="product-category">{product.categoryName}</p>
 
-                <p className="product-category">
-                    {product.category}
-                </p>
+        <h3
+            className="product-name-clickable"
+            onClick={() => onProductClick(product.productId)}
+        >
+            {product.name}
+        </h3>
 
-                <h3>{product.name}</h3>
+        <p className="product-description">
+          {product.description}
+        </p>
 
-                <div className="product-bottom">
+        <div className="product-bottom">
+          <span className="product-price">
+            ₹{product.price.toLocaleString("en-IN")}
+          </span>
 
-                    <span className="product-price">
-                        ₹{product.price}
-                    </span>
-
-                    <span className="product-rating">
-                        ★ {product.rating}
-                    </span>
-
-                </div>
-
-                <button className="add-cart-button">
-                    Add to Cart
-                </button>
-
-            </div>
-
+          <span className="product-stock">
+            {product.stockQuantity} available
+          </span>
         </div>
-    );
+
+        <button
+          className="add-cart-button"
+          onClick={() => addToCart(product)}
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default ProductCard;
