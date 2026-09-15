@@ -1,114 +1,84 @@
 import "./styles.css";
 
 const Filters = ({
-    selectedCategory,
-    setSelectedCategory,
-    minPrice,
-    setMinPrice,
-    maxPrice,
-    setMaxPrice
+  selectedCategory,
+  setSelectedCategory,
+  minPrice,
+  setMinPrice,
+  maxPrice,
+  setMaxPrice
 }) => {
+  const handleClearFilters = () => {
+    setSelectedCategory("");
+    setMinPrice("");
+    setMaxPrice("");
+  };
 
-    return (
-        <aside className="filters">
+  return (
+    <aside className="filters">
 
-            <h3>Filters</h3>
+      <div className="filters-header">
+        <h3>Filters</h3>
 
-            <div className="filter-section">
+        <button
+          className="clear-filters"
+          onClick={handleClearFilters}
+        >
+          Clear
+        </button>
+      </div>
 
-                <h4>Category</h4>
+      <div className="filter-group">
+        <label htmlFor="category">
+          Category
+        </label>
 
-                <label>
-                    <input
-                        type="radio"
-                        name="category"
-                        value=""
-                        checked={selectedCategory === ""}
-                        onChange={(e) =>
-                            setSelectedCategory(e.target.value)
-                        }
-                    />
-                    All
-                </label>
+        <select
+          id="category"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">All Categories</option>
+          <option value="1">Electronics</option>
+          <option value="2">Clothing</option>
+          <option value="3">Books</option>
+          <option value="4">Home & Kitchen</option>
+          <option value="5">Fitness</option>
+        </select>
+      </div>
 
-                <label>
-                    <input
-                        type="radio"
-                        name="category"
-                        value="Electronics"
-                        checked={selectedCategory === "Electronics"}
-                        onChange={(e) =>
-                            setSelectedCategory(e.target.value)
-                        }
-                    />
-                    Electronics
-                </label>
+      <div className="filter-group">
+        <label htmlFor="min-price">
+          Minimum Price
+        </label>
 
-                <label>
-                    <input
-                        type="radio"
-                        name="category"
-                        value="Clothing"
-                        checked={selectedCategory === "Clothing"}
-                        onChange={(e) =>
-                            setSelectedCategory(e.target.value)
-                        }
-                    />
-                    Clothing
-                </label>
+        <input
+          id="min-price"
+          type="number"
+          placeholder="Min price"
+          value={minPrice}
+          onChange={(e) => setMinPrice(e.target.value)}
+          min="0"
+        />
+      </div>
 
-                <label>
-                    <input
-                        type="radio"
-                        name="category"
-                        value="Footwear"
-                        checked={selectedCategory === "Footwear"}
-                        onChange={(e) =>
-                            setSelectedCategory(e.target.value)
-                        }
-                    />
-                    Footwear
-                </label>
+      <div className="filter-group">
+        <label htmlFor="max-price">
+          Maximum Price
+        </label>
 
-                <label>
-                    <input
-                        type="radio"
-                        name="category"
-                        value="Accessories"
-                        checked={selectedCategory === "Accessories"}
-                        onChange={(e) =>
-                            setSelectedCategory(e.target.value)
-                        }
-                    />
-                    Accessories
-                </label>
+        <input
+          id="max-price"
+          type="number"
+          placeholder="Max price"
+          value={maxPrice}
+          onChange={(e) => setMaxPrice(e.target.value)}
+          min="0"
+        />
+      </div>
 
-            </div>
-
-            <div className="filter-section">
-
-                <h4>Price</h4>
-
-                <input
-                    className="price-input"
-                    type="number"
-                    placeholder="Min"
-                    value={minPrice}
-                    onChange={(e) => setMinPrice(e.target.value)}
-                />
-
-                <input
-                    className="price-input"
-                    type="number"
-                    placeholder="Max"
-                    value={maxPrice}
-                    onChange={(e) => setMaxPrice(e.target.value)}
-                />
-
-            </div>
-
-        </aside>
-    );
+    </aside>
+  );
 };
 
 export default Filters;

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-// import Login from "./components/Login";
+import Login from "./components/Login";
 // import Products from "./components/Products";
 import { useState } from "react";
 
@@ -17,26 +17,22 @@ function App() {
     <BrowserRouter>
       <CartProvider>
         <Routes>
-          <Route
-            path="/products"
-            element={<Products />}
-          />
+  <Route path="/login" element={<Login />} />
 
-          <Route
-            path="/products/:productId"
-            element={<ProductDetails />}
-          />
+  <Route path="/products" element={<Products />} />
 
-          <Route
-            path="/cart"
-            element={<Cart />}
-          />
+  <Route
+    path="/products/:productId"
+    element={<ProductDetails />}
+  />
 
-          <Route
-            path="*"
-            element={<Navigate to="/products" replace />}
-          />
-        </Routes>
+  <Route path="/cart" element={<Cart />} />
+
+  <Route
+    path="*"
+    element={<Navigate to="/login" replace />}
+  />
+</Routes>
       </CartProvider>
     </BrowserRouter>
   );

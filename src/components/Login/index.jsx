@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
 
-        console.log("Username:", username);
-        console.log("Password:", password);
+        // Mock login for now
+        if (username && password) {
+            navigate("/products");
+        }
     };
 
     const handleForgotPassword = () => {

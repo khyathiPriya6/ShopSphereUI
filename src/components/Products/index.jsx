@@ -18,29 +18,29 @@ const Products = () => {
   const [maxPrice, setMaxPrice] = useState("");
 
   const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.name
-      .toLowerCase()
-      .includes(search.toLowerCase());
+  const matchesSearch = product.name
+    .toLowerCase()
+    .includes(search.toLowerCase());
 
-    const matchesCategory =
-      selectedCategory === "" ||
-      product.categoryId === Number(selectedCategory);
+  const matchesCategory =
+    selectedCategory === "" ||
+    product.categoryId === Number(selectedCategory);
 
-    const matchesMinPrice =
-      minPrice === "" ||
-      product.price >= Number(minPrice);
+  const matchesMinPrice =
+    minPrice === "" ||
+    product.price >= Number(minPrice);
 
-    const matchesMaxPrice =
-      maxPrice === "" ||
-      product.price <= Number(maxPrice);
+  const matchesMaxPrice =
+    maxPrice === "" ||
+    product.price <= Number(maxPrice);
 
-    return (
-      matchesSearch &&
-      matchesCategory &&
-      matchesMinPrice &&
-      matchesMaxPrice
-    );
-  });
+  return (
+    matchesSearch &&
+    matchesCategory &&
+    matchesMinPrice &&
+    matchesMaxPrice
+  );
+});
 
   return (
     <div className="products-page">
